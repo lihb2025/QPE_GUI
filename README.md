@@ -1,6 +1,6 @@
 # QPE GUI
 
-A PyQt5-based GUI tool for radar **Quantitative Precipitation Estimation (QPE)**.  
+A PyQt5-based GUI tool for display radar data
 Designed for CINRAD/X-band radar data visualization and interactive analysis.
 
 ---
