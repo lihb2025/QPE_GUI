@@ -233,7 +233,7 @@ class RadarViewer(QMainWindow):
             return
 
         tilt = self.el_combo.currentIndex()
-        dtype = self.var_combo.currentText()
+        product = self.var_combo.currentText()
         try:
             drange = float(self.range_input.text())
         except ValueError:
@@ -241,8 +241,8 @@ class RadarViewer(QMainWindow):
             return
 
         try:
-            ds = self.radar.get_data(tilt=tilt, drange=drange, dtype=dtype)
-            data = ds[dtype]
+            ds = self.radar.get_data(tilt=tilt, drange=drange, dtype=product)
+            data = ds[product]
         except Exception as e:
             QMessageBox.critical(self, "错误", f"数据读取失败: {e}")
             return
@@ -274,8 +274,8 @@ class RadarViewer(QMainWindow):
         gl.right_labels = False
 
         filename = os.path.basename(self.radar_file)  # 仅取文件名部分
-        self.ax.set_title(f"{filename}\n{dtype} @ {ds.attrs.get('elevation', 0):.1f}° ({drange} km)")
-        self.fig.colorbar(pcm, ax=self.ax, label=dtype)
+        self.ax.set_title(f"{filename}\n{product} @ {ds.attrs.get('elevation', 0):.1f}° ({drange} km)")
+        self.fig.colorbar(pcm, ax=self.ax, label=product)
 
         # 关键：如果之前地图处于“可见”状态，则在新 ax 上重建地图要素并保持可见
         if self.map_visible:

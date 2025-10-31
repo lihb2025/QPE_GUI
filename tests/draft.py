@@ -121,6 +121,8 @@ class RadarViewer(QMainWindow):
             if not isinstance(radar, StandardData):
                 raise TypeError
             self.radar = radar
+            print("self.radar")
+            print(self.radar)
             self.radar_file = file
         except Exception:
             QMessageBox.critical(self, "错误", "非标准格式雷达数据")
